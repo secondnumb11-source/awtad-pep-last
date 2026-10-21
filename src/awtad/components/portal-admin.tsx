@@ -5,7 +5,7 @@ import { sb } from "@/awtad/lib/supabase";
 import { Row } from "@/awtad/lib/calc";
 
 const Field = ({ l, children }: { l: string; children: ReactNode }) => <label className="fld"><span>{l}</span>{children}</label>;
-const BASIC = ["portal", "attendance", "leaves", "req-att", "req-ot", "req-perm", "req-leave", "req-admin", "expenses", "loans", "letters", "documents", "notifications", "news", "survey-answer", "certificates", "field-reports", "holidays", "eosb", "salary-calc", "alerts", "guide"];
+const BASIC = ["ess", "portal", "attendance", "leaves", "req-att", "req-ot", "req-perm", "req-leave", "req-admin", "expenses", "loans", "letters", "documents", "notifications", "news", "survey-answer", "certificates", "field-reports", "holidays", "eosb", "salary-calc", "alerts", "guide"];
 const genPw = () => { const c = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ23456789"; const a = new Uint32Array(10); crypto.getRandomValues(a); return Array.from(a, (x) => c[x % c.length]).join("") + "7"; };
 const waNum = (p: string) => { const x = String(p || "").replace(/\D/g, ""); return x.startsWith("05") ? "966" + x.slice(1) : x.startsWith("5") && x.length === 9 ? "966" + x : x; };
 
