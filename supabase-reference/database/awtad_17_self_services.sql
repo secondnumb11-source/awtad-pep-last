@@ -150,7 +150,7 @@ begin
              ((r.details->>'to')::date - (r.details->>'from')::date + 1),'معتمدة');
     elsif r.service = 'loan' and r.amount is not null then
       insert into awtad_loans(org_id,employee_id,amount,installment,start_month,note,status)
-      values(r.org_id,r.employee_id,r.amount,round(r.amount / greatest(coalesce((r.details->>'months')::int,1),1),2),r.details->>'start_month','طلب خدمة ذاتية #' || r.id,'معتمدة');
+      values(r.org_id,r.employee_id,r.amount,round(r.amount / greatest(coalesce((r.details->>'months')::int,1),1),2),coalesce(r.details->>'start_month',to_char(current_date + interval '1 month','YYYY-MM')),'طلب خدمة ذاتية #' || r.id,'معتمد');
     elsif r.service = 'bank' and (r.details->>'iban') is not null then
       update awtad_employees set iban = r.details->>'iban', bank_name = coalesce(r.details->>'bank', bank_name) where id = r.employee_id;
     end if;
