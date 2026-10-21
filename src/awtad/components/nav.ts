@@ -7,7 +7,7 @@ export const NAV: NavGroup[] = [
   { t: "التقارير والتحليلات", items: [
     { t: "لوحة التحكم", ic: "grid", k: "dashboard" },
     { t: "التقارير", ic: "file", kids: [{ t: "مركز التقارير", k: "reports" }, { t: "منشئ التقارير", k: "report-builder" }, { t: "السجل الشهري", k: "attendance-report" }, { t: "ملخص اليوم", k: "rep-today" }, { t: "خريطة الحضور", k: "rep-map" }, { t: "تحليلات المواقع", k: "rep-locations" }, { t: "بحث متعدد", k: "rep-search" }, { t: "صلاحية الوثائق", k: "rep-docs" }, { t: "تقرير السيلفي", k: "rep-selfie" }] },
-    { t: "بوابتي", ic: "users", k: "portal" },
+    { t: "بوابة الموظف", ic: "layers", kids: [{ t: "Self Services — بوابتي", k: "ess" }, { t: "اعتمادات الخدمات الذاتية", k: "ess-inbox" }, { t: "بوابتي (الكلاسيكية)", k: "portal" }] },
   ] },
   { t: "الموارد البشرية الأساسية", items: [
     { t: "الموظفون", ic: "users", kids: [
