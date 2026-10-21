@@ -108,7 +108,7 @@ export function Shell({ children }: { children: ReactNode }) {
           </div>
           <div className="usermenu">
             <button className="avatar" onClick={() => bar("user")} aria-label="قائمة المستخدم">{initials}<i /></button>
-            {menu === "user" && <div className="drop"><div className="uinfo"><b>{user?.name}</b><span>{user?.label}</span></div><Link href="/portal"><Ic n="users" s={16} />بوابتي</Link><button onClick={logout}><Ic n="out" s={16} />تسجيل الخروج</button></div>}
+            {menu === "user" && <div className="drop"><div className="uinfo"><b>{user?.name}</b><span>{user?.label}</span></div><Link href="/ess"><Ic n="layers" s={16} />بوابة الموظف</Link><button onClick={logout}><Ic n="out" s={16} />تسجيل الخروج</button></div>}
           </div>
         </header>
         <div className="crumbs">
