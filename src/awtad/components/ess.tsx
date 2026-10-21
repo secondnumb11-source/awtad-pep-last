@@ -1,6 +1,6 @@
 // @ts-nocheck -- matches the ported Awtad code style (loose TS)
 // بوابة الموظف الذاتية (ESS): الملف الكامل، البصمة الإلكترونية، الخدمات الذاتية، طلباتي، صندوق الاعتمادات.
-import { ReactNode, useEffect, useMemo, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { useData } from "@/awtad/lib/data";
 import { useAuth } from "@/awtad/lib/auth";
 import { sb, T, getOrg } from "@/awtad/lib/supabase";
@@ -336,10 +336,6 @@ function Services({ emp, t, lang, onDone }: { emp: Row; t: (x: L2) => string; la
   if (open === "letter") return <LetterService emp={emp} t={t} lang={lang} back={() => setOpen(null)} onDone={onDone} />;
   if (open && SVC[open]) return <ServiceForm svc={SVC[open]} emp={emp} t={t} back={() => setOpen(null)} onDone={onDone} />;
   return <div className="ess-svc-grid">{all.map((s: any) => <button key={s.key} className="ess-svc" onClick={() => setOpen(s.key)}><i><Ic n={s.icon} s={22} /></i><b>{t(s.title)}</b><span>{t(s.desc)}</span></button>)}</div>;
-}
-
-function FieldInput({ f, v, setV, t }: { f: F; v: Row; setV: (k: string, x: any) => void; t: (x: L2) => string; emp: Row }) {
-  return null as any;
 }
 
 function ServiceForm({ svc, emp, t, back, onDone }: { svc: Svc; emp: Row; t: (x: L2) => string; back: () => void; onDone: () => void }) {
