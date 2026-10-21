@@ -96,10 +96,13 @@ begin
   if v_mgr is null or v_mgr = v_emp then v_flow := array_remove(v_flow, 'manager'); end if;
   if cardinality(v_flow) = 0 then v_flow := array['hr']; end if;
   v_stage := v_flow[1];
-  insert into awtad_ess_requests(org_id,employee_id,service,title,details,amount,attachment_path,flow,stage,history)
-  values(v_org,v_emp,p_service,left(p_title,200),coalesce(p_details,'{}'::jsonb),p_amount,p_attachment,v_flow,v_stage,
+  -- الخطاب التعريفي يصدر تلقائيًا ويُسجَّل معتمدًا
+  if p_service = 'letter' then v_flow := array['hr']; v_stage := 'done'; end if;
+  insert into awtad_ess_requests(org_id,employee_id,service,title,details,amount,attachment_path,flow,stage,status,history)
+  values(v_org,v_emp,p_service,left(p_title,200),coalesce(p_details,'{}'::jsonb),p_amount,p_attachment,v_flow,v_stage,case when v_stage='done' then 'approved' else 'pending' end,
     jsonb_build_array(jsonb_build_object('action','submitted','by',auth.uid(),'at',now())))
   returning id into v_id;
+  if v_stage = 'done' then return jsonb_build_object('id',v_id,'stage',v_stage,'notify','[]'::jsonb); end if;
   v_mail := awtad_ess_notify(v_org, v_emp, v_stage, 'طلب جديد بانتظار اعتمادك', coalesce(v_name,'') || ' — ' || coalesce(p_title,p_service));
   return jsonb_build_object('id',v_id,'stage',v_stage,'notify',v_mail);
 end $$;
