@@ -12,6 +12,7 @@ import { ChartOfAccounts, BalanceSheet, Fees, FiscalYears, IncomeStatement, Jour
 import { CompanyDocs, CompanyProfile } from "./company";
 import { GuidePage } from "./guide";
 import { PortalAdmin } from "./portal-admin";
+import { EssInbox, EssPortal } from "./ess";
 import { BulkActions, Calibration, Certificates, ReportBuilder, SurveyAnswer } from "./more";
 import { Attendance, AttendanceReport, Diag, EmployeeCards, FieldReports, GovHub, UsersAdmin, Eosb, Journal, Nitaqat, Payroll, SalaryCalc, Wps } from "./views";
 
@@ -21,7 +22,9 @@ const crud = (k: string) => () => <Crud cfg={CFG[k]} />;
 
 // الترتيب هنا هو ترتيب القائمة الجانبية؛ group يظهر كعنوان قسم. إضافة وحدة = سطر واحد.
 export const MODULES: Mod[] = [
-  { key: "portal", title: "بوابتي", icon: "users", group: "بوابة الموظف", roles: ALL, el: () => <MyPortal /> },
+  { key: "ess", title: "بوابة الموظف (Self Services)", icon: "layers", group: "بوابة الموظف", roles: ALL, el: () => <EssPortal /> },
+  { key: "ess-inbox", title: "اعتمادات الخدمات الذاتية", icon: "flow", roles: ["admin", "hr", "manager", "accountant"], el: () => <EssInbox /> },
+  { key: "portal", title: "بوابتي", icon: "users", roles: ALL, el: () => <MyPortal /> },
   { key: "dashboard", title: "لوحة التحكم", icon: "grid", group: "التقارير والتحليلات", roles: ALL, el: () => <Dashboard /> },
   { key: "reports", title: "التقارير", icon: "file", roles: MGR, el: () => <Reports /> },
   { key: "employees", title: "الموظفون", icon: "users", group: "الموارد البشرية الأساسية", roles: MGR, el: crud("emp") },
