@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AuthProvider } from "@/awtad/lib/auth";
+import { PWA } from "@/awtad/components/PWA";
 
 function NotFoundComponent() {
   return (
@@ -78,11 +80,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "أوتاد الفهد | نظام الموارد البشرية الداخلي" },
+      { name: "description", content: "نظام إدارة الموارد البشرية الخاص بشركة أوتاد الفهد — نسخة تجريبية للاستخدام الداخلي" },
+      { name: "theme-color", content: "#1f3f6b" },
+      { property: "og:title", content: "أوتاد الفهد | نظام الموارد البشرية الداخلي" },
+      { property: "og:description", content: "نظام إدارة الموارد البشرية الخاص بشركة أوتاد الفهد — نسخة تجريبية للاستخدام الداخلي" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:site", content: "@Lovable" },
@@ -92,7 +94,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;600;700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -103,7 +108,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ar" dir="rtl">
       <head>
         <HeadContent />
       </head>
@@ -121,7 +126,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <AuthProvider>
+        <PWA />
+        <Outlet />
+      </AuthProvider>
     </QueryClientProvider>
   );
 }

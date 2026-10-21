@@ -1,0 +1,12 @@
+- [x] Fix company-profile loading to use its existing org_id key, retaining awtad-prefixed tables.
+- [x] Add password recovery request to login and signup screens.
+- [x] Add public recovery callback and password update form.
+- [x] Unit-test recovery request and password update; verify request and invalid-link screens on desktop/mobile.
+- [ ] Verify delivery and reset with a real email link (blocked: external auth settings and mailbox access are unavailable).
+- [x] Verify full logo rotation and separation from text on desktop and mobile.
+- [x] Verify company photos in gallery, employee section, and all module tabs.
+- [x] Review remaining database warnings and apply null-safe role checks; database regression checks passed.
+- [x] Inspect signed-in chart screen through the live preview: 44 account rows loaded; required-field validation observed.
+- [ ] Verify signed-in workflows after security changes (blocked: live preview disconnected; external session unavailable to headless automation).
+- [x] Resolve actionable access warnings: role-gated writes, authenticated-only policies/helpers, manager-only membership assignment, private participation reads.
+- [x] Recheck security findings: 25 remain (24 authenticated RPC advisories retained for functionality; leaked-password protection requires external Supabase auth settings access).

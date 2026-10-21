@@ -10,33 +10,91 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as SecIndexRouteImport } from './routes/$sec.index'
+import { Route as SecIdRouteImport } from './routes/$sec.$id'
+import { Route as JobsOrgRouteImport } from './routes/jobs.$org'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecIndexRoute = SecIndexRouteImport.update({
+  id: '/$sec/',
+  path: '/$sec/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecIdRoute = SecIdRouteImport.update({
+  id: '/$sec/$id',
+  path: '/$sec/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const JobsOrgRoute = JobsOrgRouteImport.update({
+  id: '/jobs/$org',
+  path: '/jobs/$org',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/$sec/$id': typeof SecIdRoute
+  '/jobs/$org': typeof JobsOrgRoute
+  '/$sec/': typeof SecIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/$sec/$id': typeof SecIdRoute
+  '/jobs/$org': typeof JobsOrgRoute
+  '/$sec': typeof SecIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/login': typeof LoginRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/$sec/$id': typeof SecIdRoute
+  '/jobs/$org': typeof JobsOrgRoute
+  '/$sec/': typeof SecIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    '/' | '/login' | '/reset-password' | '/$sec/$id' | '/jobs/$org' | '/$sec/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/login' | '/reset-password' | '/$sec/$id' | '/jobs/$org' | '/$sec'
+  id:
+    | '__root__'
+    | '/'
+    | '/login'
+    | '/reset-password'
+    | '/$sec/$id'
+    | '/jobs/$org'
+    | '/$sec/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  LoginRoute: typeof LoginRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
+  SecIdRoute: typeof SecIdRoute
+  JobsOrgRoute: typeof JobsOrgRoute
+  SecIndexRoute: typeof SecIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +106,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$sec/': {
+      id: '/$sec/'
+      path: '/$sec'
+      fullPath: '/$sec/'
+      preLoaderRoute: typeof SecIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/$sec/$id': {
+      id: '/$sec/$id'
+      path: '/$sec/$id'
+      fullPath: '/$sec/$id'
+      preLoaderRoute: typeof SecIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/jobs/$org': {
+      id: '/jobs/$org'
+      path: '/jobs/$org'
+      fullPath: '/jobs/$org'
+      preLoaderRoute: typeof JobsOrgRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  LoginRoute: LoginRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
+  SecIdRoute: SecIdRoute,
+  JobsOrgRoute: JobsOrgRoute,
+  SecIndexRoute: SecIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
