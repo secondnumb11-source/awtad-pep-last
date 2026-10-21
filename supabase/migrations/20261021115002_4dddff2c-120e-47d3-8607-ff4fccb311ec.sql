@@ -1,0 +1,1 @@
+revoke execute on function public.awtad_autoconfirm_user() from public, anon, authenticated;
