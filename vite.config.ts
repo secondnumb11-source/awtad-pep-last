@@ -12,4 +12,10 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
+  // Deploy target: Vercel. Node 22+ is required because @supabase/realtime-js
+  // needs native WebSocket during SSR. (Lovable's sandbox overrides this preset.)
+  nitro: {
+    preset: "vercel",
+    vercel: { functions: { runtime: "nodejs22.x" } },
+  },
 });
