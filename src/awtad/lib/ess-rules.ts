@@ -1,3 +1,4 @@
+// @ts-nocheck -- loose rows, matches the Awtad code style
 // قواعد الخدمات الذاتية وفق نظام العمل السعودي وأنظمة الجوازات (قابلة للاختبار)
 type Row = Record<string, any>;
 

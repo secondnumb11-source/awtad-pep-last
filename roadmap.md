@@ -9,4 +9,6 @@
 - [x] Inspect signed-in chart screen through the live preview: 44 account rows loaded; required-field validation observed.
 - [ ] Verify signed-in workflows after security changes (blocked: live preview disconnected; external session unavailable to headless automation).
 - [x] Resolve actionable access warnings: role-gated writes, authenticated-only policies/helpers, manager-only membership assignment, private participation reads.
-- [x] Recheck security findings: 25 remain (24 authenticated RPC advisories retained for functionality; leaked-password protection requires external Supabase auth settings access).
+- [x] Recheck security findings: 25 remain (24 authenticated RPC advisories retained for functionality; leaked-password protection requires external Supabase auth settings access).- [x] Employee self-service portal (profile, geofenced/biometric punch, 12 self services, my requests, approvals inbox) wired into main app menu and employee form.
+- [ ] Run awtad_17_self_services.sql in the external database (blocked: needs the owner; no database access from here).
+- [ ] Signed-in end-to-end check of submit → manager → HR → finance (blocked: preview session for the external database is not available to automation).
